@@ -1,0 +1,59 @@
+#!/bin/sh
+echo -e "\033[1;32mRyanSW Bash Shell Configuration\033[0m"
+
+USER_NAME='Ryan White'
+USER_EMAIL=('ryanswhite98@gmail.com' 'ryan.s.white@jpl.nasa.gov')
+
+header() { 
+    echo -e "\n>> \033[1;34m$*\033[0m <<" 
+}
+
+failure() { 
+    echo -e ">> \033[1;31m$*\033[0m <<" 
+}
+
+header Configuring Git
+if command -v git &> /dev/null
+then
+    #  Have the user choose an email
+    echo "Select an email option or type one"
+    for i in "${!USER_EMAIL[@]}"; do 
+        echo "$i ) ${USER_EMAIL[$i]}"
+    done
+    read -p "> " EMAIL_CHOICE
+
+    # Verify the choice or use default
+    re='^[0-9]+$'
+    if [ -z $EMAIL_CHOICE ];
+    then
+        EMAIL_CHOICE=0
+    fi
+    if [[ ${EMAIL_CHOICE} =~ $re ]]
+    then
+        EMAIL_CHOICE=${USER_EMAIL[$EMAIL_CHOICE]}
+    fi
+
+    # Set the information
+    echo "${PC}Email set to < ${EMAIL_CHOICE} >"
+    git config --global user.email "${EMAIL_CHOICE}"
+    git config --global user.name "${USER_NAME}"
+
+else
+    failure No git to configure
+fi
+
+ADD_BASHRC=$(test -f ~/.bash_ryan || echo 1)
+echo $ADD_BASHRC
+
+header Pulling the latest .bash_ryan
+if [ ! $(curl https://s.ryansw.com/bashrc > ~/.bash_ryan) ]
+then
+    failure Could not pull
+else
+    echo Pull success
+    if [ -n $ADD_BASHRC ]
+    then
+        echo Adding to bashrc
+        echo -e "\n# Ryan's Bash Config\nsource ~/.bash_ryan\n" >> ~/.bashrc
+    fi
+fi
