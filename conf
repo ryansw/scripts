@@ -43,12 +43,12 @@ else
 fi
 
 ADD_BASHRC=$(test -f ~/.bash_ryan || echo 1)
-echo $ADD_BASHRC
 
 header Pulling the latest .bash_ryan
-if [ ! $(curl https://s.ryansw.com/bashrc > ~/.bash_ryan) ]
+if [ ! $(curl s.ryansw.com/bashrc > ~/.bash_ryan) ]
 then
     failure Could not pull
+    rm ~/.bash_ryan
 else
     echo Pull success
     if [ -n $ADD_BASHRC ]
