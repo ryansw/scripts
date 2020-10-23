@@ -45,7 +45,7 @@ fi
 ADD_BASHRC=$(test -f ~/.bash_ryan || echo 1)
 
 header Pulling the latest .bash_ryan
-if [ ! $(curl s.ryansw.com/bashrc > ~/.bash_ryan) ]
+if [ $(curl s.ryansw.com/bashrc > ~/.bash_ryan) ]
 then
     failure Could not pull
     rm ~/.bash_ryan
