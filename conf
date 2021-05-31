@@ -20,7 +20,7 @@ then
     for i in "${!USER_EMAIL[@]}"; do 
         echo "$i ) ${USER_EMAIL[$i]}"
     done
-    read -p "> " EMAIL_CHOICE
+    read -p "> " EMAIL_CHOICE < /dev/tty
 
     # Verify the choice or use default
     re='^[0-9]+$'
