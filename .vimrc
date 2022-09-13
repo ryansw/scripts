@@ -12,6 +12,10 @@ Plugin 'tmux-plugins/vim-tmux'
 
 Plugin 'tpope/vim-git'
 
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'airblade/vim-gitgutter'
+
 Plugin 'scrooloose/nerdtree'
 nnoremap <C-n> :NERDTreeToggle<CR>
 
