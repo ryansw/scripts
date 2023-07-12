@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo -e "\033[1;32mRyanSW Bash Shell Configuration\033[0m"
 
 USER_NAME='Ryan White'
@@ -56,4 +56,24 @@ else
         echo Adding to bashrc
         echo -e "\n# Ryan's Bash Config\nsource ~/.bash_ryan\n" >> ~/.bashrc
     fi
+fi
+
+SETUP_BASH=$(test -d ~/.vim/bundle/Vundle.vim)
+
+if [ -n $SETUP_BASH ]
+then
+    header Setting up Vundle
+    mkdir -p ~/.vim/bundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
+
+header Pulling the latest .vimrc
+if [ $(curl -L s.ryansw.com/vimrc > ~/.vimrc ) ]
+then
+    failure Could not pull
+    rm ~/.vimrc
+else
+    echo Pull success
+    touch ~/.vim/add_plugins.rc
+    touch ~/.vim/add_conf.rc
 fi
