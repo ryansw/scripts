@@ -22,6 +22,8 @@ Plugin 'tell-k/vim-autopep8'
 
 Plugin 'dracula/vim', { 'name': 'dracula' }
 
+source ~/.vim/add_plugins.rc
+
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 call vundle#end()
@@ -60,3 +62,5 @@ inoremap <Up> <C-o>:echo "No up for you!"<CR>
 nnoremap <Down> :echo "No down for you!"<CR>
 vnoremap <Down> :<C-u>echo "No down for you!"<CR>
 inoremap <Down> <C-o>:echo "No down for you!"<CR>
+
+source ~/.vim/add_conf.rc
