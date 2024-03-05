@@ -36,6 +36,9 @@ let g:is_bash=1
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
+set expandtab
+set spell
+set nu rnu
 set nowrap
 set path=./**
 set wildmenu
