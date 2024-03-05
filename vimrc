@@ -29,7 +29,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 call vundle#end()
 filetype plugin indent on
 syntax on
-colorscheme koehler
+colorscheme dracula
 
 let g:is_bash=1
 
