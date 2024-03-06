@@ -22,14 +22,14 @@ Plugin 'tell-k/vim-autopep8'
 
 Plugin 'dracula/vim', { 'name': 'dracula' }
 
-source ~/.vim/add_plugins.rc
+silent! source ~/.vim/add_plugins.rc
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 call vundle#end()
 filetype plugin indent on
 syntax on
-colorscheme dracula
+silent! colorscheme dracula
 
 let g:is_bash=1
 
@@ -66,4 +66,4 @@ nnoremap <Down> :echo "No down for you!"<CR>
 vnoremap <Down> :<C-u>echo "No down for you!"<CR>
 inoremap <Down> <C-o>:echo "No down for you!"<CR>
 
-source ~/.vim/add_conf.rc
+silent! source ~/.vim/add_conf.rc
