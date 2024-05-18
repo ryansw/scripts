@@ -42,39 +42,9 @@ else
     failure No git to configure
 fi
 
-ADD_BASHRC=$(test -f ~/.bash_ryan || echo 1)
+header Pulling dotfiles
+[ ! -d ~/.dotfiles ] && git clone https://github.com/ryansw/dotfiles.git ~/.dotfiles
+[ -d ~/.dotfiles ] && git -C ~/.dotfiles pull
 
-header Pulling the latest .bash_ryan
-if [ $(curl -L s.ryansw.com/bashrc > ~/.bash_ryan) ]
-then
-    failure Could not pull
-    rm ~/.bash_ryan
-else
-    echo Pull success
-    if [ -n $ADD_BASHRC ]
-    then
-        echo Adding to bashrc
-        echo -e "\n# Ryan's Bash Config\nsource ~/.bash_ryan\n" >> ~/.bashrc
-    fi
-fi
-
-SETUP_BASH=$(test -d ~/.vim/bundle/Vundle.vim)
-
-if [ -n $SETUP_BASH ]
-then
-    header Setting up Vundle
-    mkdir -p ~/.vim/bundle
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    git clone --recurse-submodules -j8 https://github.com/ycm-core/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
-fi
-
-header Pulling the latest .vimrc
-if [ $(curl -L s.ryansw.com/vimrc > ~/.vimrc ) ]
-then
-    failure Could not pull
-    rm ~/.vimrc
-else
-    echo Pull success
-    touch ~/.vim/add_plugins.rc
-    touch ~/.vim/add_conf.rc
-fi
+header Running dotfiles bootstrap
+~/.dotfiles/bootstrap.sh

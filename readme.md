@@ -1,5 +1,8 @@
-# s.ryansw.com
+# Ryan's Quick Scripts Repo
 
-## RyanSW.com Scripts Repository
+https://s.byteowl.dev/
 
-This is currently a test.
+## Bootstrap dotfiles
+This pulls the dotfiles repo and installs them appropriately
+
+`curl -S s.byteowl.dev/conf | bash`
